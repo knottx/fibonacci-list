@@ -1,5 +1,5 @@
-import 'package:fibonacci_list/home/widgets/fibonacci_list_tile.dart';
-import 'package:fibonacci_list/models/fibonacci_number.dart';
+import 'package:fibonacci_list/domain/entities/fibonacci_number.dart';
+import 'package:fibonacci_list/presentation/widgets/fibonacci_number_list_tile.dart';
 import 'package:flutter/material.dart';
 
 class SelectedFibonacciBottomSheet {
@@ -12,6 +12,7 @@ class SelectedFibonacciBottomSheet {
   }) {
     return showModalBottomSheet<FibonacciNumber>(
       context: context,
+      clipBehavior: Clip.antiAlias,
       builder: (bottomSheetContext) {
         return _SelectedFibonacciBottomSheetView(
           selected: selected,
@@ -84,7 +85,7 @@ class _SelectedFibonacciBottomSheetViewState
         itemBuilder: (context, index) {
           final fibonacciNumber = filteredList[index];
 
-          return FibonacciListTile(
+          return FibonacciNumberListTile(
             fibonacciNumber: fibonacciNumber,
             selected: widget.selected == fibonacciNumber,
             selectedColor: Colors.green,

@@ -1,13 +1,13 @@
-import 'package:fibonacci_list/models/fibonacci_number.dart';
+import 'package:fibonacci_list/domain/entities/fibonacci_number.dart';
 import 'package:flutter/material.dart';
 
-class FibonacciListTile extends StatelessWidget {
+class FibonacciNumberListTile extends StatelessWidget {
   final FibonacciNumber fibonacciNumber;
   final bool selected;
   final Color selectedColor;
   final VoidCallback onTap;
 
-  const FibonacciListTile({
+  const FibonacciNumberListTile({
     super.key,
     required this.fibonacciNumber,
     required this.onTap,

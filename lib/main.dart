@@ -1,12 +1,27 @@
-import 'package:fibonacci_list/home/home_page.dart';
+import 'package:fibonacci_list/data/repositories/fibonacci_repository_impl.dart';
+import 'package:fibonacci_list/domain/entities/fibonacci_number.dart';
+import 'package:fibonacci_list/domain/use_cases/generate_fibonacci_numbers_use_case.dart';
+import 'package:fibonacci_list/presentation/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  final fibonacciRepository = FibonacciRepositoryImpl();
+  final generateFibonacciNumbersUseCase = GenerateFibonacciNumbersUseCase(
+    fibonacciRepository,
+  );
+
+  final fibonacciNumbers = generateFibonacciNumbersUseCase(40);
+
+  runApp(MyApp(fibonacciNumbers: fibonacciNumbers));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final List<FibonacciNumber> fibonacciNumbers;
+
+  const MyApp({
+    super.key,
+    required this.fibonacciNumbers,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +33,9 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: HomeScreen(
+        fibonacciNumbers: fibonacciNumbers,
+      ),
     );
   }
 }
